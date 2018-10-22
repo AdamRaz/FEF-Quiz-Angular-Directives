@@ -1,0 +1,22 @@
+<div class="jumbotron">
+  <h1 id="storeHeading">{{lego.name}}</h1>
+
+</div>
+
+<div class="">
+  <p id="brickColors">We have {{lego.brickColors.length}} brick colors</p>
+  <ul id="colorList"> The colors are:
+    <li ng-repeat="(color, details) in lego.bricks" id="color-{{color}}">{{color}}
+      <ul>
+        <li ng-repeat="(brickSize, brickSizeInfo) in details" class="col-sm-3 well brick-{{brickSize}}" ng-class="{'low-stock': brickSizeInfo.quantity < 10}">
+           {{brickSize}}, we have {{brickSizeInfo.quantity}} and price is {{brickSizeInfo.price}}
+           <p ng-if="brickSizeInfo.quantity < 5" class="coming-soon">Coming soon - more bricks on the way!</p>
+           <button class="buyButton" ng-click="lego.buy(color, brickSize)">Buy</button>
+           <button class="returnButton" ng-click="lego.return(color, brickSize)">Return</button>
+        </li>
+     
+      </ul>
+    </li>
+  </ul>
+
+
